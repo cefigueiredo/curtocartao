@@ -1,5 +1,5 @@
-<ul data-role="listview" data-filter="true" >
+<ul data-role="listview" data-filter="true" data-inset='true' >
 	<% @clientes.each do |cliente|%>
-		<li><%= link_to cliente.nome, '#'%></li>
+		<li><%= link_to cliente.nome, detalhes_consumo_path(cliente.id) %></li>
 	<% end %>
 </ul>

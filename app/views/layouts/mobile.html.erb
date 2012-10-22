@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Curtocartao</title>
+  <title>Curto Cartão</title>
   <%= csrf_meta_tags %>
 
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
@@ -9,8 +9,17 @@
 	<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 </head>
 <body>
+	<div data-role="page">
 
-<%= yield %>
+		<div data-role="header">
+			<h1>Curto Cartão</h1>
+		</div>
+
+		<div data-role="content">
+			<%= yield %>
+		</div>
+
+	</div>
 
 </body>
 </html>

@@ -3,11 +3,7 @@ Curtocartao::Application.routes.draw do
 
   resources :clientes
 
-  # The priority is based upon order of creation:
-  # first created -> highest priority.
-
-  # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
+  match 'consumo/:id/detalhes' => 'consumo#detalhes', :as => :detalhes_consumo
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:

@@ -1,0 +1,10 @@
+<form action="#" method="post">
+	<ul data-role="listview" data-inset='true' >
+		<% @produtos.each do |produto|%>
+			<li data-role='fieldcontain'>
+				<label class='ui-input-text'><%= produto.nome%></label>
+				<input type="range" name="slider-step" id="slider-step" value="0" min="0" max="10" />
+			</li>
+		<% end %>
+	</ul>
+</form>

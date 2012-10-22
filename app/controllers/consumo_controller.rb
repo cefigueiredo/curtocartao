@@ -8,6 +8,7 @@ class ConsumoController < ApplicationController
 
 	def detalhes
 		@cliente = Cliente.find(params[:id])
+		@produtos = Produto.order('nome')
 	end
 
 end
