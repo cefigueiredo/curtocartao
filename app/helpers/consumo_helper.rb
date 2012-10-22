@@ -1,0 +1,2 @@
+module ConsumoHelper
+end
