@@ -1,3 +1,5 @@
-<p>
-	oi
-</p>
+<ul data-role="listview" data-filter="true" >
+	<% @clientes.each do |cliente|%>
+		<li><%= link_to cliente.nome, '#'%></li>
+	<% end %>
+</ul>
