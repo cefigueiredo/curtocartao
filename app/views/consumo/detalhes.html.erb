@@ -1,10 +1,18 @@
-<form action="#" method="post">
-	<ul data-role="listview" data-inset='true' >
-		<% @produtos.each do |produto|%>
-			<li data-role='fieldcontain'>
-				<label class='ui-input-text'><%= produto.nome%></label>
-				<input type="range" name="slider-step" id="slider-step" value="0" min="0" max="10" />
-			</li>
-		<% end %>
-	</ul>
-</form>
+<div data-role="header">
+	<%= link_to 'Voltar', consumo_path, 'data-icon' => 'arrow-l'%>
+	<h1><%= @cliente.nome%></h1>
+</div>
+
+<div data-role="content">
+	<%= form_tag(confirma_consumo_path(@cliente)) do %>
+		<ul data-role="listview" data-inset='true' >
+			<% @produtos.each do |produto|%>
+				<li data-role='fieldcontain'>
+					<label class='ui-input-text'><%= produto.nome%></label>
+					<input type="range" name=consumo[<%=produto.id%>] value="0" min="0" max="10" />
+				</li>
+			<% end %>
+		</ul>
+		<input type="submit" value="Confirmar" data-icon="check" data-theme="b" />
+	<% end %>
+</div>

@@ -11,4 +11,21 @@ class ConsumoController < ApplicationController
 		@produtos = Produto.order('nome')
 	end
 
+	def confirma
+		cliente = Cliente.find(params[:id])
+		consumo = params[:consumo]
+
+		valor = 0
+
+		consumo.each do |produto|
+			valor += Produto.find(produto[0].to_i).preco * produto[1].to_i
+		end
+
+		cliente.saldo -= valor
+		cliente.save!
+
+		@cliente = cliente
+		@valor = valor
+	end
+
 end
