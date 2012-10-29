@@ -7,22 +7,18 @@
 <div data-role="content">
 	<%= form_tag(confirma_consumo_path(@cliente), :id => 'Confirmar') do %>
 		<div class="ui-grid-b">
-
-
 			<% @produtos.each do |produto|%>
-						<div class="<%= cycle('ui-block-a', 'ui-block-b' , 'ui-block-c') %>">
-							<ul data-role="listview" data-inset='true' >
+				<div class="<%= cycle('ui-block-a', 'ui-block-b' , 'ui-block-c') %>">
+					<ul data-role="listview" data-inset='true' >
 						<li data-role="fieldcontain">
-						<label class='ui-input-text'>
-							<input type="button" onclick="$(this).parent().parent().next().attr('value', parseInt($(this).parent().parent().next().attr('value')) + 1 );" data-icon="plus" value="<%= produto.nome%> <%= number_to_currency(produto.preco, :separator => ',', :precision => 2, :unit => 'R$') %>" data-inline="true" class='ui-input-text' />
+							<label class='ui-input-text'>
+								<input type="button" onclick="$(this).parent().parent().next().attr('value', parseInt($(this).parent().parent().next().attr('value')) + 1 );" data-icon="plus" value="<%= produto.nome%> <%= number_to_currency(produto.preco, :separator => ',', :precision => 2, :unit => 'R$') %>" data-inline="true" class='ui-input-text' />
 							</label>
 							<input type="number" style="width: 60px; margin: 11px 0 0 60%;" name="consumo[<%=produto.id%>]" value="0" min="0" />
 						</li>
-						</ul>
-						</div>
-
+					</ul>
+				</div>
 			<% end %>
-
 		</div>
 	<% end %>
 </div>
