@@ -41,7 +41,13 @@ class ConsumoController < ApplicationController
 		valor = 0
 
 		consumo.each do |produto|
-			valor += Produto.find(produto[0].to_i).preco * produto[1].to_i
+			produto_id = produto[0].to_i
+			quantidade = produto[1].to_i
+
+			next if quantidade == 0
+
+			valor += Produto.find(produto_id).preco * quantidade
+			Consumo.create!(:data => Date.today, :cliente_id => cliente.id, :produto_id => produto_id, :quantidade => quantidade)
 		end
 
 		cliente.saldo -= valor
