@@ -11,6 +11,29 @@ class ConsumoController < ApplicationController
 		@produtos = Produto.order('nome')
 	end
 
+	def novo_cliente
+		@cliente = Cliente.new
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @cliente }
+    end
+	end
+
+	def create
+    @cliente = Cliente.new(params[:cliente])
+
+    respond_to do |format|
+      if @cliente.save
+        format.html { redirect_to consumo_path, :notice => 'Cliente was successfully created.' }
+        format.json { render :json => @cliente, :status => :created, :location => @cliente }
+      else
+        format.html { render :action => "new" }
+        format.json { render :json => @cliente.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+
 	def confirma
 		cliente = Cliente.find(params[:id])
 		consumo = params[:consumo]

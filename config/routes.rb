@@ -6,6 +6,7 @@ Curtocartao::Application.routes.draw do
   match 'consumo/:id/detalhes' => 'consumo#detalhes', :as => :detalhes_consumo
   match 'consumo/:id/confirma' => 'consumo#confirma', :as => :confirma_consumo
   match 'consumo/' => 'consumo#index', :as => :consumo
+  match 'consumo/novo_cliente' => 'consumo#novo_cliente', :as => :novo_cliente_consumo
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
