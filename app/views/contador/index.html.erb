@@ -1,3 +1,4 @@
+<h3>Escolha o dia</h3>
 <% @dias.each do |dia| %>
-	<p><%= dia %></p>
+	<p><%= link_to dia, detalhes_contador_path(dia) %></p>
 <% end %>
