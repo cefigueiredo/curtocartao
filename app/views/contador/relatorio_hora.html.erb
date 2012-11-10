@@ -1,0 +1,24 @@
+<h1>Consumos do dia <%= @data %> entre <%= @hora_inicial %> e <%= @hora_final %> </h1>
+
+<table>
+  <tr>
+    <th>Produto</th>
+    <th>Quantidade</th>
+    <th>Valor</th>
+    <th></th>
+  </tr>
+
+<% @resumo.each do |consumo| %>
+	<% produto = Produto.find(consumo.produto_id)%>
+  <tr>
+    <td><%= produto.nome %></td>
+    <td style="text-align: center;"><%= consumo.quantidade %></td>
+    <td>R$ <%= produto.preco * consumo.quantidade %></td>
+    <td></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'Voltar', detalhes_contador_path(@data) %>

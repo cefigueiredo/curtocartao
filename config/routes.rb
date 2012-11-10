@@ -9,6 +9,7 @@ Curtocartao::Application.routes.draw do
   match 'consumo/novo_cliente' => 'consumo#novo_cliente', :as => :novo_cliente_consumo
 
   match 'contador/:data/detalhes' => 'contador#detalhes', :as => :detalhes_contador
+  match 'contador/:data/relatorio_hora' => 'contador#relatorio_hora', :as => :relatorio_hora_contador
   match 'contador/' => 'contador#index', :as => :contador
   # Keep in mind you can assign values other than :controller and :action
 
