@@ -15,10 +15,10 @@
     <th>Valor</th>
     <th></th>
   </tr>
-<% soma_dia = 0%>
+<% soma_dia = 0 %>
 <% @resumo.each do |consumo| %>
-	<% produto = Produto.find(consumo.produto_id)%>
-	<% soma_dia += produto.preco * consumo.quantidade unless produto.preco < 0%>
+	<% produto = Produto.find(consumo.produto_id) %>
+	<% soma_dia += produto.preco * consumo.quantidade unless produto.preco < 0 %>
   <tr>
     <td><%= produto.nome %></td>
     <td style="text-align: center;"><%= consumo.quantidade %></td>
@@ -27,7 +27,7 @@
   </tr>
 <% end %>
 </table>
-<h2>receita do dia: R$ <%= soma_dia%> </h2>
+<h2>receita do dia: R$ <%= soma_dia %> </h2>
 
 <br />
 
