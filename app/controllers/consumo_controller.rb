@@ -55,6 +55,8 @@ class ConsumoController < ApplicationController
 
 		@cliente = cliente
 		@valor = valor
+
+    redirect_to consumo_path and return
 	end
 
 end

@@ -1,5 +1,6 @@
 <div data-role="header">
-	<h1>Escolha seu nome</h1>
+  <% p @cliente %>
+  <h1><%= "#{@cliente.nome} : #{@cliente.saldo}" unless @cliente.blank? %></h1>
 	<%= link_to 'Novo cliente', novo_cliente_consumo_path%>
 </div>
 
