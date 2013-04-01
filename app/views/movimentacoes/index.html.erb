@@ -2,6 +2,12 @@
 
 <table>
   <tr>
+    <td></td>
+    <td></td>
+    <td>SALDO</td>
+    <td><%= Movimentacao.sum(:valor) %></td>
+  </tr>
+  <tr>
     <th>Descricao</th>
     <th>Grupo</th>
     <th>Data</th>
@@ -10,7 +16,6 @@
     <th></th>
     <th></th>
   </tr>
-
 <% @movimentacoes.each do |movimentacao| %>
   <tr>
     <td><%= movimentacao.descricao %></td>
@@ -22,12 +27,6 @@
     <td><%= link_to 'Destroy', movimentacao, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
-  <tr>
-    <td></td>
-    <td></td>
-    <td>Somatório total</td>
-    <td><%= Movimentacao.sum(:valor) %></td>
-  </tr>
 </table>
 
 <br />
