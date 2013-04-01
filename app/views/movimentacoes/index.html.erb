@@ -4,8 +4,8 @@
   <tr>
     <th>Descricao</th>
     <th>Grupo</th>
-    <th>Valor</th>
     <th>Data</th>
+    <th>Valor</th>
     <th></th>
     <th></th>
     <th></th>
@@ -15,13 +15,19 @@
   <tr>
     <td><%= movimentacao.descricao %></td>
     <td><%= movimentacao.grupo.nome %></td>
-    <td><%= movimentacao.valor %></td>
     <td><%= movimentacao.data %></td>
+    <td><%= movimentacao.valor %></td>
     <td><%= link_to 'Show', movimentacao %></td>
     <td><%= link_to 'Edit', edit_movimentacao_path(movimentacao) %></td>
     <td><%= link_to 'Destroy', movimentacao, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>Somatório total</td>
+    <td><%= Movimentacao.sum(:valor) %></td>
+  </tr>
 </table>
 
 <br />
