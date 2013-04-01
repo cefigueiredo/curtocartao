@@ -1,4 +1,6 @@
 Curtocartao::Application.routes.draw do
+  resources :grupos
+
   resources :produtos
 
   resources :clientes
