@@ -1,0 +1,25 @@
+<%= form_for(@custo) do |f| %>
+  <% if @custo.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@custo.errors.count, "error") %> prohibited this custo from being saved:</h2>
+
+      <ul>
+      <% @custo.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nome %><br />
+    <%= f.text_field :nome %>
+  </div>
+  <div class="field">
+    <%= f.label :meta %><br />
+    <%= f.text_field :meta %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
