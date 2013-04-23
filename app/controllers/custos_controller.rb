@@ -2,7 +2,7 @@ class CustosController < ApplicationController
   # GET /custos
   # GET /custos.json
   def index
-    @custos = Custo.all
+		@custos = Custo.order('ordem')
 
     respond_to do |format|
       format.html # index.html.erb

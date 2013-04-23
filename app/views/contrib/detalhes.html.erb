@@ -1,0 +1,67 @@
+<div class="row-fluid">
+  <div class="span5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th> Produto </th>
+            <th> Quantidade </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @produtos.each do |produto|%>
+            <tr>
+              <td> <%= produto.nome%> </td>
+              <td> 
+                <select class="span8">
+                  <% (0..20).each do |n|%>
+                    <option> <%= n %> </option>
+                  <% end %>
+                </select>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+
+  <div class="span5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th> Custos </th>
+            <th> Valor </th>
+            <th> Meta </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @custos.each do |custo|%>
+            <tr>
+              <td> <%= custo.nome%> </td>
+              <td> 
+                <div class="input-prepend input-append">
+                  <span class="add-on">$</span>
+                  <input class="span4" id="appendedPrependedInput" 
+                         type="text" placeholder="00">
+                  <span class="add-on">.00</span>
+              <td> <%= custo.meta%> </td>
+              </td>
+              <td>
+
+            </tr>
+            <tr>
+              <td colspan="2">
+                <div class="progress progress-danger">
+                  <div class="bar" style="width: 80%"></div>
+                </div> 
+              </td>
+              <td>
+                80%
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+  <div class="span2">
+  </div>
+</div>

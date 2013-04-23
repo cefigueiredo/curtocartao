@@ -1,0 +1,14 @@
+<h1>Contrib#index</h1>
+<div data-role="header">
+  <% p @cliente %>
+  <h1><%= "#{@cliente.nome} : #{@cliente.saldo}" unless @cliente.blank? %></h1>
+	<%= link_to 'Novo cliente', novo_cliente_consumo_path%>
+</div>
+
+<div data-role="content">
+	<ul data-role="listview" data-filter="true" data-inset='true' >
+		<% @clientes.each do |cliente|%>
+			<li><%= link_to cliente.nome, detalhes_contrib_path(cliente.id), 'data-ajax' => "false" %></li>
+		<% end %>
+	</ul>
+</div>

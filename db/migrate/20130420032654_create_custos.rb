@@ -6,6 +6,7 @@ class CreateCustos < ActiveRecord::Migration
       t.datetime "created_at"
       t.datetime "updated_at"
       t.timestamps
+      t.integer :ordem
     end
   end
 end
