@@ -27,6 +27,8 @@ Curtocartao::Application.routes.draw do
   match 'contador/' => 'contador#index', :as => :contador
 
   match 'contrib/:id/detalhes' => 'contrib#detalhes', :as => :detalhes_contrib
+  match 'contrib/:id/confirma' => 'contrib#confirma', :as => :confirma_contrib
+
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:

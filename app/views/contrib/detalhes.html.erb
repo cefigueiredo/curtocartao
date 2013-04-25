@@ -1,3 +1,4 @@
+<%= form_tag(confirma_contrib_path(@cliente), :id => 'Confirmar') do %>
 <div class="row-fluid">
   <div class="span5">
       <table class="table">
@@ -12,7 +13,7 @@
             <tr>
               <td> <%= produto.nome%> </td>
               <td> 
-                <select class="span8">
+                <select class="span8" name="prodcount[<%=produto.id%>]">
                   <% (0..20).each do |n|%>
                     <option> <%= n %> </option>
                   <% end %>
@@ -41,7 +42,8 @@
                 <div class="input-prepend input-append">
                   <span class="add-on">$</span>
                   <input class="span4" id="appendedPrependedInput" 
-                         type="text" placeholder="00">
+                    type="text" placeholder="00" 
+                    name="contribval[<%=custo.id%>]">
                   <span class="add-on">.00</span>
               <td> <%= custo.meta%> </td>
               </td>
@@ -50,7 +52,7 @@
             </tr>
             <tr>
               <td colspan="2">
-                <div class="progress progress-danger">
+                <div class="progress progress-danger progress-striped">
                   <div class="bar" style="width: 80%"></div>
                 </div> 
               </td>
@@ -63,5 +65,7 @@
       </table>
   </div>
   <div class="span2">
+      <button type="submit" class="btn">Enviar</button>
   </div>
 </div>
+<% end %>

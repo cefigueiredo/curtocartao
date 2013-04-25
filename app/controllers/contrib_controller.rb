@@ -13,6 +13,28 @@ class ContribController < ApplicationController
   end
 
   def confirma
+		@cliente = Cliente.find(params[:id])
+    prodcount = params[:prodcount]
+    contribval = params[:contribval]
+    
+    @contribuicao = @cliente.contribuicaos.create()
+    contribval.each do |cont|
+      idx = cont[0]
+      value = cont[1].to_i
+      if value > 0
+        @contribuicao.contribuicaos_custos.create(
+          :custo_id => idx, :valor => cont[1])
+      end
+    end
+
+    prodcount.each do |prod|
+      idx = prod[0]
+      quantidade = prod[1].to_i
+      if quantidade > 0
+        @contribuicao.contribuicaos_produtos.create(
+          :produto_id => idx, :quantidade => prod[1])
+      end
+    end
   end
 
 end
