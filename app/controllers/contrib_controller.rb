@@ -42,4 +42,12 @@ class ContribController < ApplicationController
 		@cliente.save!
   end
 
+  def confirma_recarga
+		@cliente = Cliente.find(params[:id])
+    valor = params[:valor_recarga].to_i
+    @recarga = @cliente.recargas.create(:valor => valor)
+    @cliente.saldo += valor
+		@cliente.save!
+    redirect_to detalhes_contrib_path(@cliente) and return
+  end
 end

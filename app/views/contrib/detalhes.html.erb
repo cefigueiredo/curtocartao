@@ -1,11 +1,13 @@
 <div class="row-fluid">
 <div class="navbar">
   <div class="navbar-inner">
-    <a class="brand" href="#">Title</a>
-    <ul class="nav">
-      <li class="active"><a href="#">Home</a></li>
-      <li><a href="#">Link</a></li>
-      <li><a href="#">Link</a></li>
+    <a class="brand" href="#">
+      <%= @cliente.nome %>, seu saldo é de <%= number_to_currency(@cliente.saldo, :separator => ',', :precision => 2, :unit => 'R$') %>.
+    </a>
+    <ul class="nav pull-right">
+      <li>
+        <a href="#modalRecarga" role="button" class="btn" data-toggle="modal">Recarga</a>
+      </li>
     </ul>
   </div>
 </div>
@@ -78,6 +80,30 @@
   </div>
   <div class="span2">
       <button type="submit" class="btn">Enviar</button>
+  </div>
+</div>
+<% end %>
+
+
+<%= form_tag(confirma_recarga_contrib_path(@cliente), :id => 'Confirmar') do %>
+<div id="modalRecarga" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <p> Valor da recarga
+                <div class="input-prepend input-append">
+                  <span class="add-on">$</span>
+                  <input class="span4" id="appendedPrependedInput" 
+                    type="text" placeholder="00" 
+                    name="valor_recarga">
+                  <span class="add-on">.00</span>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Cancelar</a>
+    <button type="submit" class="btn btn-primary">Efetuar Recarga</button>
   </div>
 </div>
 <% end %>
