@@ -17,11 +17,13 @@ class ContribController < ApplicationController
     prodcount = params[:prodcount]
     contribval = params[:contribval]
     
+    total = 0
     @contribuicao = @cliente.contribuicaos.create()
     contribval.each do |cont|
       idx = cont[0]
       value = cont[1].to_i
       if value > 0
+        total += value
         @contribuicao.contribuicaos_custos.create(
           :custo_id => idx, :valor => cont[1])
       end
@@ -35,6 +37,9 @@ class ContribController < ApplicationController
           :produto_id => idx, :quantidade => prod[1])
       end
     end
+
+    @cliente.saldo -= total
+		@cliente.save!
   end
 
 end
