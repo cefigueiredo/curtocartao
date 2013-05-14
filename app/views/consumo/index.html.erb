@@ -1,3 +1,14 @@
+<% if flash[:notice] %>
+  <div  id="saldo-mesg">
+    <div class="ui-bar ui-bar-e">
+      <h3 style="display:inline-block; width:92%; margin-top:5px;"><%= flash[:notice] %></h3> 
+    </div>
+  </div>
+  <script>
+    setTimeout(function() { $("#saldo-mesg").html(""); }, 3000);
+  </script>
+<% end %>
+
 <div data-role="header">
   <% p @cliente %>
   <h1><%= "#{@cliente.nome} : #{@cliente.saldo}" unless @cliente.blank? %></h1>
