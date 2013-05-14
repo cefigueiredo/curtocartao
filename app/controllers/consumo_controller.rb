@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class ConsumoController < ApplicationController
 
 	layout "mobile"
@@ -57,7 +59,10 @@ class ConsumoController < ApplicationController
 		@cliente = cliente
 		@valor = valor
 
-    redirect_to consumo_path and return
+    flash[:notice] = @cliente.nome+", seu saldo agora é: "+
+      ActionController::Base.helpers.number_to_currency(
+        @cliente.saldo, :separator => ',', :precision => 2, :unit => 'R$')
+    redirect_to consumo_path and return 
 	end
 
 end
