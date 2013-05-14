@@ -8,7 +8,8 @@ class ConsumoController < ApplicationController
 
 	def detalhes
 		@cliente = Cliente.find(params[:id])
-		@produtos = Produto.order('nome')
+		@produtos = Produto.order('ordem').find_all{ |p| not p.nome.include? "Recarga" }
+    render :layout => 'bootstrap'
 	end
 
 	def novo_cliente

@@ -50,4 +50,7 @@ class ContribController < ApplicationController
 		@cliente.save!
     redirect_to detalhes_contrib_path(@cliente) and return
   end
+  def mes
+    render :text => "CAGUEI"
+  end
 end
