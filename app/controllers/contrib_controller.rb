@@ -48,7 +48,7 @@ class ContribController < ApplicationController
     @recarga = @cliente.recargas.create(:valor => valor)
     @cliente.saldo += valor
 		@cliente.save!
-    redirect_to detalhes_contrib_path(@cliente) and return
+    redirect_to detalhes_consumo_path(@cliente) and return
   end
   def mes
     render :text => "CAGUEI"
