@@ -3,6 +3,20 @@ Curtocartao::Application.routes.draw do
 
   resources :grupos
 
+  get "contribuicoes/index"
+
+  get "contribuicoes/detalhes"
+
+  get "contribuicoes/confirma"
+
+  get "contrib/index"
+
+  get "contrib/detalhes"
+
+  get "contrib/confirma"
+
+  resources :custos
+
   resources :produtos
 
   resources :clientes
@@ -15,6 +29,11 @@ Curtocartao::Application.routes.draw do
   match 'contador/:data/detalhes' => 'contador#detalhes', :as => :detalhes_contador
   match 'contador/:data/relatorio_hora' => 'contador#relatorio_hora', :as => :relatorio_hora_contador
   match 'contador/' => 'contador#index', :as => :contador
+
+  match 'contrib/:id/detalhes' => 'contrib#detalhes', :as => :detalhes_contrib
+  match 'contrib/:id/confirma' => 'contrib#confirma', :as => :confirma_contrib
+  match 'contrib/:id/confirma_recarga' => 'contrib#confirma_recarga', :as => :confirma_recarga_contrib
+
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:

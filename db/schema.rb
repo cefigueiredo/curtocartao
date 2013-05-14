@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130401005008) do
+ActiveRecord::Schema.define(:version => 20130426002529) do
 
   create_table "clientes", :force => true do |t|
     t.string   "nome"
@@ -28,6 +28,32 @@ ActiveRecord::Schema.define(:version => 20130401005008) do
     t.integer  "produto_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "contribuicaos", :force => true do |t|
+    t.integer  "cliente_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "contribuicaos_custos", :id => false, :force => true do |t|
+    t.integer "contribuicao_id"
+    t.integer "custo_id"
+    t.float   "valor"
+  end
+
+  create_table "contribuicaos_produtos", :id => false, :force => true do |t|
+    t.integer "contribuicao_id"
+    t.integer "produto_id"
+    t.integer "quantidade"
+  end
+
+  create_table "custos", :force => true do |t|
+    t.string   "nome"
+    t.float    "meta"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "ordem"
   end
 
   create_table "grupos", :force => true do |t|
@@ -50,6 +76,14 @@ ActiveRecord::Schema.define(:version => 20130401005008) do
     t.float    "preco"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "ordem"
+  end
+
+  create_table "recargas", :force => true do |t|
+    t.integer  "cliente_id"
+    t.float    "valor"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end

@@ -1,0 +1,15 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nome:</b>
+  <%= @custo.nome %>
+</p>
+
+<p>
+  <b>Meta:</b>
+  <%= @custo.meta %>
+</p>
+
+
+<%= link_to 'Edit', edit_custo_path(@custo) %> |
+<%= link_to 'Back', custos_path %>

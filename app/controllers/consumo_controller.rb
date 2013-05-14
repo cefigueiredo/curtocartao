@@ -1,3 +1,5 @@
+# encoding: utf-8
+
 class ConsumoController < ApplicationController
 
 	layout "mobile"
@@ -8,7 +10,8 @@ class ConsumoController < ApplicationController
 
 	def detalhes
 		@cliente = Cliente.find(params[:id])
-		@produtos = Produto.order('nome')
+		@produtos = Produto.order('ordem').find_all{ |p| not p.nome.include? "Recarga" }
+    render :layout => 'bootstrap'
 	end
 
 	def novo_cliente
@@ -56,7 +59,10 @@ class ConsumoController < ApplicationController
 		@cliente = cliente
 		@valor = valor
 
-    redirect_to consumo_path and return
+    flash[:notice] = @cliente.nome+", seu saldo agora é: "+
+      ActionController::Base.helpers.number_to_currency(
+        @cliente.saldo, :separator => ',', :precision => 2, :unit => 'R$')
+    redirect_to consumo_path and return 
 	end
 
 end

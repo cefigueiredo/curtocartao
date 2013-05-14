@@ -1,0 +1,109 @@
+<div class="row-fluid">
+<div class="navbar">
+  <div class="navbar-inner">
+    <a class="brand" href="#">
+      <%= @cliente.nome %>, seu saldo é de <%= number_to_currency(@cliente.saldo, :separator => ',', :precision => 2, :unit => 'R$') %>.
+    </a>
+    <ul class="nav pull-right">
+      <li>
+        <a href="#modalRecarga" role="button" class="btn" data-toggle="modal">Recarga</a>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>
+<%= form_tag(confirma_contrib_path(@cliente), :id => 'Confirmar') do %>
+<div class="row-fluid">
+  <div class="span5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th> Produto </th>
+            <th> Quantidade </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @produtos.each do |produto|%>
+            <tr>
+              <td> <%= produto.nome%> </td>
+              <td> 
+                <select class="span8" name="prodcount[<%=produto.id%>]">
+                  <% (0..20).each do |n|%>
+                    <option> <%= n %> </option>
+                  <% end %>
+                </select>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+
+  <div class="span5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th> Custos </th>
+            <th> Valor </th>
+            <th> Meta </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @custos.each do |custo|%>
+            <tr>
+              <td> <%= custo.nome%> </td>
+              <td> 
+                <div class="input-prepend input-append">
+                  <span class="add-on">$</span>
+                  <input class="span4" id="appendedPrependedInput" 
+                    type="text" placeholder="00" 
+                    name="contribval[<%=custo.id%>]">
+                  <span class="add-on">.00</span>
+              <td> <%= custo.meta%> </td>
+              </td>
+              <td>
+
+            </tr>
+            <tr>
+              <td colspan="2">
+                <div class="progress progress-danger progress-striped">
+                  <div class="bar" style="width: 80%"></div>
+                </div> 
+              </td>
+              <td>
+                80%
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+  <div class="span2">
+      <button type="submit" class="btn">Enviar</button>
+  </div>
+</div>
+<% end %>
+
+
+<%= form_tag(confirma_recarga_contrib_path(@cliente), :id => 'Confirmar') do %>
+<div id="modalRecarga" class="modal hide fade">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Modal header</h3>
+  </div>
+  <div class="modal-body">
+    <p> Valor da recarga
+                <div class="input-prepend input-append">
+                  <span class="add-on">$</span>
+                  <input class="span4" id="appendedPrependedInput" 
+                    type="text" placeholder="00" 
+                    name="valor_recarga">
+                  <span class="add-on">.00</span>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Cancelar</a>
+    <button type="submit" class="btn btn-primary">Efetuar Recarga</button>
+  </div>
+</div>
+<% end %>
