@@ -18,7 +18,7 @@
 <div data-role="content">
 	<ul class="lista-clientes" data-role="listview" data-filter="true" data-inset='true'>
 		<% @clientes.each do |cliente|%>
-			<li><%= link_to cliente.nome, detalhes_consumo_path(cliente.id), 'data-ajax' => "false" %></li>
+			<li class="item-cliente"><%= link_to cliente.nome, detalhes_consumo_path(cliente.id), 'data-ajax' => "false" %></li>
 		<% end %>
 	</ul>
 </div> 
@@ -27,5 +27,10 @@
 $(document).ready(function() {
   var search_input = $("ul.lista-clientes").prev().find('input.ui-input-text');
   search_input.focus();
+  search_input.keydown(function(e) {
+    if (e.which == 13) { 
+      window.location = $("li.item-cliente").filter(":visible:first").find('a:first').attr('href');
+    }
+  });
 });
 </script>
