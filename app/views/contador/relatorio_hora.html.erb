@@ -17,6 +17,12 @@
     <td></td>
   </tr>
 <% end %>
+  <tr>
+    <td>Recargas</td>
+    <td style="text-align: center;"><%= @recarga_total[:quantidade] %></td>
+    <td> <%= number_to_currency(@recarga_total[:valor], :separator => ',', :precision => 2, :unit => 'R$') %></td>
+    <td></td>
+  </tr>
 </table>
 
 <br />
