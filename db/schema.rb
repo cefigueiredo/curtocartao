@@ -17,8 +17,8 @@ ActiveRecord::Schema.define(:version => 20130426002529) do
     t.string   "nome"
     t.string   "email"
     t.float    "saldo"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "consumos", :force => true do |t|
@@ -26,14 +26,14 @@ ActiveRecord::Schema.define(:version => 20130426002529) do
     t.integer  "cliente_id"
     t.integer  "quantidade"
     t.integer  "produto_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "contribuicaos", :force => true do |t|
     t.integer  "cliente_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "contribuicaos_custos", :id => false, :force => true do |t|
@@ -51,24 +51,24 @@ ActiveRecord::Schema.define(:version => 20130426002529) do
   create_table "custos", :force => true do |t|
     t.string   "nome"
     t.float    "meta"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "ordem"
   end
 
   create_table "produtos", :force => true do |t|
     t.string   "nome"
     t.float    "preco"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "ordem"
   end
 
   create_table "recargas", :force => true do |t|
     t.integer  "cliente_id"
     t.float    "valor"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
 end
