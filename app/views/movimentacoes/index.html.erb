@@ -1,0 +1,34 @@
+<h1>Listing movimentacoes</h1>
+
+<table>
+  <tr>
+    <td></td>
+    <td></td>
+    <td>SALDO</td>
+    <td><%= Movimentacao.sum(:valor) %></td>
+  </tr>
+  <tr>
+    <th>Descricao</th>
+    <th>Grupo</th>
+    <th>Data</th>
+    <th>Valor</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+<% @movimentacoes.each do |movimentacao| %>
+  <tr>
+    <td><%= movimentacao.descricao %></td>
+    <td><%= movimentacao.grupo.nome %></td>
+    <td><%= movimentacao.data %></td>
+    <td><%= movimentacao.valor %></td>
+    <td><%= link_to 'Show', movimentacao %></td>
+    <td><%= link_to 'Edit', edit_movimentacao_path(movimentacao) %></td>
+    <td><%= link_to 'Destroy', movimentacao, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Movimentacao', new_movimentacao_path %>

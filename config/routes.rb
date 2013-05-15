@@ -1,4 +1,8 @@
 Curtocartao::Application.routes.draw do
+  resources :movimentacoes
+
+  resources :grupos
+
   get "contribuicoes/index"
 
   get "contribuicoes/detalhes"
