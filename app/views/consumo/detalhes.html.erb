@@ -31,6 +31,26 @@
               <td> <%= produto.nome%>  <%= number_to_currency(produto.preco, :separator => ',', :precision => 2, :unit => 'R$') %>
               </td>
               <td> 
+                <div class="input-prepend input-append">
+                  <span class="add-on clickable"  style="cursor:pointer;" onClick="javascript:decProd(event, '<%= produto.id %>');"> - </span>
+                  <input class="span4" type="tel" 
+                    id="prodcount-<%=produto.id%>" name="consumo[<%=produto.id%>]" value="0"
+                    style="-webkit-appearance: none; margin: 0;">
+                  <span class="add-on clickable"  style="cursor:pointer;" onClick="javascript:incProd(event, '<%= produto.id %>');">+</span>
+                </div>
+                <!--
+                <div class="input-prepend input-append">
+                  <span class="add-on">
+                    <button role="button" class="btn" onClick="javascript:decProd(event, '<%= produto.id %>');"> - </button>
+                  </span>
+                  <input class="span4" type="number" 
+                      id="prodcount-<%=produto.id%>" name="consumo[<%=produto.id%>]" value-"0">
+                  <span class="add-on">
+                    <button role="button" class="btn" onClick="javascript:incProd(event, '<%= produto.id %>');"> + </button>
+                  </span>
+                </div>
+                -->
+                <!--
                 <select class="span8" id="prodcount-<%=produto.id%>" name="consumo[<%=produto.id%>]">
                   <% (0..20).each do |n|%>
                     <option> <%= n %> </option>
@@ -38,9 +58,8 @@
                 </select>
                 <div class="btn-group">
 
-                  <button role="button" class="btn" onClick="javascript:decProd(event, '<%= produto.id %>');"> - </button>
-                  <button role="button" class="btn" onClick="javascript:incProd(event, '<%= produto.id %>');"> + </button>
                 </div>
+                -->
               </td>
             <% end %>
             </tr>
@@ -86,17 +105,13 @@ var incProd = function (e, prod_id) {
   e.preventDefault();
   var divname = "#prodcount-"+prod_id;
   var count = parseInt($(divname).val()) + 1;
-  if ( count <= 20 ) {
     $(divname).val(count);
-  }
 };
 var decProd = function (e, prod_id) {
   e.preventDefault();
   var divname = "#prodcount-"+prod_id;
   var count = parseInt($(divname).val()) - 1;
-  if ( count >= 0 ) {
     $(divname).val(count);
-  }
 };
 </script>
 <% end %>
