@@ -4,7 +4,7 @@
   <div class="navbar-inner">
     <div class="container">
       <a class="brand" href="#">
-        <%= @cliente.nome %>, seu saldo é de <font id="saldo-f"><%= number_to_currency(@cliente.saldo, :separator => ',', :precision => 2, :unit => 'R$') %>.</font>
+        <%= @cliente.nome %>, seu saldo é de <font id="saldo-f"><%= number_to_currency(@cliente.saldo, :separator => ',', :precision => 2, :unit => 'R$') %></font>.
       </a>
       <ul class="nav pull-left">
         <li>
@@ -19,7 +19,7 @@
       </ul>
       <ul class="nav pull-right">
         <li>
-          <a href="#modalRecarga" role="button" class="btn" data-toggle="modal">Recarga</a>
+          <a href="#modalRecarga" role="button" class="btn" data-toggle="modal" id="recarga-btn">Recarga</a>
         </li>
       </ul>
     </div>
@@ -70,6 +70,9 @@
     <h3>Modal header</h3>
   </div>
   <div class="modal-body">
+    <div class="alert alert-info hide" id="saldo-alert">
+      Atualizando saldo, por favor aguarde...
+    </div>
     <p> Valor da recarga
                 <div class="input-prepend input-append">
                   <span class="add-on">$</span>
@@ -113,6 +116,7 @@ jQuery(document).ready(function($){
     if (rechargeRequested) {
       return;
     }
+    $("#saldo-alert").show();
     rechargeRequested = true;
     e.preventDefault();
     $.post('<%= url_for( :controller => 'contrib', :action=> 'confirma_recarga' ) %>', 
@@ -120,20 +124,15 @@ jQuery(document).ready(function($){
            function(data){
              updateBalance(data.saldo);
              rechargeRequested = false;
+             $("#saldo-alert").hide();
              $("#modalRecarga").modal("hide");
+             $(".valrec").val('')
            }).error(function(x, y, z) {
              console.log('Erro na recarga:', x, y, z)
+             $("#saldo-alert").hide();
              rechargeRequested = false;
              alert("Ocorreu um erro durante a tentativa de recarga. Por favor, tente novamente"); 
            });
-  /*
-    $.ajax({
-      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-      type: 'post',
-      url: '<%= url_for( :controller => 'contrib', :action=> 'confirma_recarga' ) %>',
-      data: { valor_recarga: $("#valor_recarga").val() },
-      success: function(d) { console.log(d); }});
-  */
   });
 });
 </script>
