@@ -48,7 +48,14 @@ class ContribController < ApplicationController
     @recarga = @cliente.recargas.create(:valor => valor)
     @cliente.saldo += valor
 		@cliente.save!
-    redirect_to detalhes_consumo_path(@cliente) and return
+    if request.xhr?
+      render :json => {
+        :saldo => ActionController::Base.helpers.number_to_currency(
+          @cliente.saldo, :separator => ',', :precision => 2, :unit => 'R$')
+        }.to_json
+    else
+      redirect_to detalhes_consumo_path(@cliente) and return
+    end
   end
   def mes
     render :text => "CAGUEI"

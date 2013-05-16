@@ -1,9 +1,10 @@
 
+<%= csrf_meta_tag %>
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
       <a class="brand" href="#">
-        <%= @cliente.nome %>, seu saldo é de <%= number_to_currency(@cliente.saldo, :separator => ',', :precision => 2, :unit => 'R$') %>.
+        <%= @cliente.nome %>, seu saldo é de <font id="saldo-f"><%= number_to_currency(@cliente.saldo, :separator => ',', :precision => 2, :unit => 'R$') %>.</font>
       </a>
       <ul class="nav pull-left">
         <li>
@@ -63,7 +64,6 @@
 <% end %>
 
 
-<%= form_tag(confirma_recarga_contrib_path(@cliente), :id => 'Confirmar') do %>
 <div id="modalRecarga" class="modal hide fade">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -73,32 +73,67 @@
     <p> Valor da recarga
                 <div class="input-prepend input-append">
                   <span class="add-on">$</span>
-                  <input class="span4" id="appendedPrependedInput" 
-                    type="text" placeholder="00" 
-                    name="valor_recarga">
+                  <input class="span4 valrec" id="appendedPrependedInput" 
+                    type="tel" placeholder="00" 
+                    name="valor_recarga" autofocus>
                   <span class="add-on">.00</span>
                 </div>
     </p>
   </div>
   <div class="modal-footer">
     <a href="#" class="btn" data-dismiss="modal">Cancelar</a>
-    <button type="submit" class="btn btn-primary">Efetuar Recarga</button>
+    <button type="submit" class="btn btn-primary" id="submit-recarga">Efetuar Recarga</button>
   </div>
 </div>
 
 <script>
-var incProd = function (e, prod_id) {
-  e.preventDefault();
-  var divname = "#prodcount-"+prod_id;
-  var count = parseInt($(divname).val()) + 1;
-    $(divname).val(count);
-};
-var decProd = function (e, prod_id) {
-  e.preventDefault();
-  var divname = "#prodcount-"+prod_id;
-  var count = parseInt($(divname).val()) - 1;
-    $(divname).val(count);
-};
+  var incProd = function (e, prod_id) {
+    e.preventDefault();
+    var divname = "#prodcount-"+prod_id;
+    var count = parseInt($(divname).val()) + 1;
+      $(divname).val(count);
+  };
 
+  var decProd = function (e, prod_id) {
+    e.preventDefault();
+    var divname = "#prodcount-"+prod_id;
+    var count = parseInt($(divname).val()) - 1;
+      $(divname).val(count);
+  };
+jQuery(document).ready(function($){
+  var updateBalance = function(val) {
+    $("#saldo-f").html(val);
+  };
+
+  $.ajaxSetup({
+    headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')}
+  });
+  var rechargeRequested = false;
+  $("#submit-recarga").click(function(e){
+    if (rechargeRequested) {
+      return;
+    }
+    rechargeRequested = true;
+    e.preventDefault();
+    $.post('<%= url_for( :controller => 'contrib', :action=> 'confirma_recarga' ) %>', 
+           { "valor_recarga": $(".valrec").val() }, 
+           function(data){
+             updateBalance(data.saldo);
+             rechargeRequested = false;
+             $("#modalRecarga").modal("hide");
+           }).error(function(x, y, z) {
+             console.log('Erro na recarga:', x, y, z)
+             rechargeRequested = false;
+             alert("Ocorreu um erro durante a tentativa de recarga. Por favor, tente novamente"); 
+           });
+  /*
+    $.ajax({
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      type: 'post',
+      url: '<%= url_for( :controller => 'contrib', :action=> 'confirma_recarga' ) %>',
+      data: { valor_recarga: $("#valor_recarga").val() },
+      success: function(d) { console.log(d); }});
+  */
+  });
+});
 </script>
-<% end %>
