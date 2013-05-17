@@ -95,7 +95,11 @@
     var divname = "#prodcount-"+prod_id;
     var count = isNaN(parseInt($(divname).val())) ? 0 : parseInt($(divname).val())
     count += 1;
-      $(divname).val(count);
+    $(divname).val(count);
+    if (count > -1) {
+      $(divname).css('background-color', 'white');
+      $(divname).css('color', 'black');
+    };
   };
 
   var decProd = function (e, prod_id) {
@@ -104,6 +108,11 @@
     var count = isNaN(parseInt($(divname).val())) ? 0 : parseInt($(divname).val())
     count -= 1;
     $(divname).val(count);
+    if (count < 0) {
+      $(divname).css('background-color', 'red');
+      $(divname).css('color', 'white');
+    };
+    
   };
 jQuery(document).ready(function($){
   var updateBalance = function(val) {
