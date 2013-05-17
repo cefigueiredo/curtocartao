@@ -93,15 +93,17 @@
   var incProd = function (e, prod_id) {
     e.preventDefault();
     var divname = "#prodcount-"+prod_id;
-    var count = parseInt($(divname).val()) + 1;
+    var count = isNaN(parseInt($(divname).val())) ? 0 : parseInt($(divname).val())
+    count += 1;
       $(divname).val(count);
   };
 
   var decProd = function (e, prod_id) {
     e.preventDefault();
     var divname = "#prodcount-"+prod_id;
-    var count = parseInt($(divname).val()) - 1;
-      $(divname).val(count);
+    var count = isNaN(parseInt($(divname).val())) ? 0 : parseInt($(divname).val())
+    count -= 1;
+    $(divname).val(count);
   };
 jQuery(document).ready(function($){
   var updateBalance = function(val) {
