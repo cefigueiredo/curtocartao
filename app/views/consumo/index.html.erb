@@ -9,6 +9,11 @@
   </script>
 <% end %>
 
+<% if session[:mobile] %>
+	<h1> IS MOBILE </h1>
+<% else %>
+	<h1> IS NOT MOBILE </h1>
+<% end %>
 <div data-role="header">
   <% p @cliente %>
   <h1><%= "#{@cliente.nome} : #{@cliente.saldo}" unless @cliente.blank? %></h1>
@@ -16,7 +21,7 @@
 </div>
 
 <div data-role="content">
-	<ul class="lista-clientes" data-role="listview" data-filter="true" data-inset='true'>
+	<ul data-role="listview" data-inset="true" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Nome do cliente..." class="lista-clientes" >
 		<% @clientes.each do |cliente|%>
 			<li class="item-cliente"><%= link_to cliente.nome, detalhes_consumo_path(cliente.id), 'data-ajax' => "false" %></li>
 		<% end %>
