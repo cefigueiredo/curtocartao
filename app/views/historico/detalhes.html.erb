@@ -1,0 +1,23 @@
+<%= form_tag(detalhes_historico_path(@cliente.id), :method => "get") do %>
+<h1>Historico#detalhes</h1>
+Data : <input type="text" id="datepicker-start" name="startdate"/></p>
+<%= submit_tag("Gerar relatório por dia", :id => "btn-submit") %>
+<% end %>
+<p> Consumo total <p>
+<p> Valor: <%= @total_consumo[:valor] %> </p>
+<% @quantidade_produtos.each do |produto| %>
+  <p> <%= produto[:produto] %>: <%= produto[:quantidade] %> </p>
+<% end %>
+<p> Recarga total <p>
+<p> Valor: <%= @recarga_total[:valor] %>. Quantidade: <%= @recarga_total[:quantidade] %> </p>
+<% @historico.each do |consumo| %>
+  <p> <%= consumo[:created_at] %> - <%= consumo[:produto] %> - <%= consumo[:quantidade] %> - <%= consumo[:valor] %> </p> 
+<% end %>
+
+<script>
+jQuery(document).ready(function($){
+    $("#datepicker-start").datepicker({dateFormat:  "yy-mm-dd"});
+//    $("#datepicker-end").datepicker({dateFormat:  "yy-mm-dd"});
+
+  });
+</script>

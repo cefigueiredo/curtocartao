@@ -1,4 +1,6 @@
 Curtocartao::Application.routes.draw do
+  get "historico/detalhes"
+
   resources :movimentacoes
 
   resources :grupos
@@ -34,6 +36,7 @@ Curtocartao::Application.routes.draw do
   match 'contrib/:id/confirma' => 'contrib#confirma', :as => :confirma_contrib
   match 'contrib/:id/confirma_recarga' => 'contrib#confirma_recarga', :as => :confirma_recarga_contrib
 
+  match 'historico/:id/detalhes' => 'historico#detalhes', :as => :detalhes_historico
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
