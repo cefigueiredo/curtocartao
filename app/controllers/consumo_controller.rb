@@ -6,6 +6,7 @@ class ConsumoController < ApplicationController
 
 	def index
 		@clientes = Cliente.order('nome')
+    UserMailer.test_email("seila").deliver
 	end
 
 	def detalhes

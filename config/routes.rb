@@ -1,4 +1,8 @@
 Curtocartao::Application.routes.draw do
+  get "email/personalizado"
+
+  get "email/geral"
+
   get "historico/detalhes"
 
   resources :movimentacoes

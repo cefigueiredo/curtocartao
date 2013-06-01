@@ -1,0 +1,58 @@
+<h1>Email#personalizado</h1>
+<p>Find me in app/views/email/personalizado.html.erb</p>
+
+<%= csrf_meta_tag %>
+<div class="row-fluid">
+  <div class="span2">
+    <button class="btn" type="button" id="select-all"> Todos </button>
+    <button class="btn" type="button" id="unselect-all"> Nenhum </button>
+  <% @clientes.each do |cliente|%>
+    <label class="checkbox">
+      <input type="checkbox" id="cliente-<%= cliente.id%>" class="cliente-box"> <%= cliente.nome %>
+    </label>
+  <% end %>
+  </div>
+  <div class="span10">
+    <label> Assunto </label>
+    <input type="text" class="input-xxlarge" placeholder="Ex: Novidade no Curto Café!">
+    <label> Corpo </label>
+    <textarea class="input-xxlarge" rows="10"><h1> Visualização de Historórico pelo sistema! </h1>
+<p>
+  Olá {{NOME}},  
+</p>
+<p>
+  Agora você pode acessar o seu histórico de consumo através do link: <br/>
+  http://curtocartao.herokuapp.com/historico/{{ID}}/detalhes
+</p>
+    </textarea>
+    <div class="form-actions">
+        <button type="submit" id="send-email" class="btn btn-primary">Enviar Emails</button>
+    </div>
+  </div>
+</div>
+
+<script>
+jQuery(document).ready(function($){
+  $("#select-all").click(function () { $(".cliente-box").prop('checked', true); });
+  $("#unselect-all").click(function () { $(".cliente-box").prop('checked', false); });
+    e.preventDefault();
+    $.post('<%= url_for( :controller => 'contrib', :action=> 'confirma_recarga' ) %>', 
+           { "valor_recarga": $(".valrec").val() }, 
+           function(data){
+             updateBalance(data.saldo);
+             rechargeRequested = false;
+             $("#saldo-alert").hide();
+             $("#modalRecarga").modal("hide");
+             $(".valrec").val('')
+           }).error(function(x, y, z) {
+             console.log('Erro na recarga:', x, y, z)
+             $("#saldo-alert").hide();
+             rechargeRequested = false;
+             alert("Ocorreu um erro durante a tentativa de recarga. Por favor, tente novamente"); 
+           });
+  });
+
+
+
+});
+</script>
