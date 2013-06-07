@@ -40,6 +40,7 @@ Curtocartao::Application.routes.draw do
   match 'contrib/:id/confirma' => 'contrib#confirma', :as => :confirma_contrib
   match 'contrib/:id/confirma_recarga' => 'contrib#confirma_recarga', :as => :confirma_recarga_contrib
 
+  match 'email/envia_persionalizado' => 'email#envia_persionalizado', :as => :envia_personalizado
   match 'historico/:id/detalhes' => 'historico#detalhes', :as => :detalhes_historico
   # Keep in mind you can assign values other than :controller and :action
 

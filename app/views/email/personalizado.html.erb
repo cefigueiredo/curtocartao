@@ -8,15 +8,15 @@
     <button class="btn" type="button" id="unselect-all"> Nenhum </button>
   <% @clientes.each do |cliente|%>
     <label class="checkbox">
-      <input type="checkbox" id="cliente-<%= cliente.id%>" class="cliente-box"> <%= cliente.nome %>
+      <input type="checkbox" value="<%= cliente.id%>" class="cliente-box"> <%= cliente.nome %>
     </label>
   <% end %>
   </div>
   <div class="span10">
     <label> Assunto </label>
-    <input type="text" class="input-xxlarge" placeholder="Ex: Novidade no Curto Café!">
+    <input type="text" class="input-xxlarge" id="email-subject" placeholder="Ex: Novidade no Curto Café!">
     <label> Corpo </label>
-    <textarea class="input-xxlarge" rows="10"><h1> Visualização de Historórico pelo sistema! </h1>
+    <textarea class="input-xxlarge" rows="10" id="email-body"><h1> Visualização de Historórico pelo sistema! </h1>
 <p>
   Olá {{NOME}},  
 </p>
@@ -35,24 +35,20 @@
 jQuery(document).ready(function($){
   $("#select-all").click(function () { $(".cliente-box").prop('checked', true); });
   $("#unselect-all").click(function () { $(".cliente-box").prop('checked', false); });
+  $("#send-email").click(function (e) { 
     e.preventDefault();
-    $.post('<%= url_for( :controller => 'contrib', :action=> 'confirma_recarga' ) %>', 
-           { "valor_recarga": $(".valrec").val() }, 
-           function(data){
-             updateBalance(data.saldo);
-             rechargeRequested = false;
-             $("#saldo-alert").hide();
-             $("#modalRecarga").modal("hide");
-             $(".valrec").val('')
-           }).error(function(x, y, z) {
-             console.log('Erro na recarga:', x, y, z)
-             $("#saldo-alert").hide();
-             rechargeRequested = false;
-             alert("Ocorreu um erro durante a tentativa de recarga. Por favor, tente novamente"); 
-           });
+    var all_ids = [];
+    console.log("SEND EMAIL");
+    $(".cliente-box:checked").each(function() {
+      console.log("CLIENTE BOX", $(this).val());
+      $.post('<%= url_for( :controller => 'email', :action=> 'envia_personalizado' ) %>', 
+             { "cliente_id": $(this).val(), "subject": $("#email-subject").val(), "body": $("#email-body").html() }, 
+             function(data){
+               console.log("Enviou alguma merda 1.", data);
+             }).error(function(x, y, z) {
+               console.log('Erro no emvio de email:', x, y, z)
+             });
+    });
   });
-
-
-
 });
 </script>
