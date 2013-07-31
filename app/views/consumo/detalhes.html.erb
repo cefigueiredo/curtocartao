@@ -16,6 +16,11 @@
         <li>
           <a role="button" class="btn btn-primary" id="btn-send" onClick="javascript: document.Confirmar.submit();"><font color="white"> Enviar </font> </a>
         </li>
+        <li>
+          <a class="brand" href="#" id="total-compra">
+            &nbsp;&nbsp;Total: R$0,00
+          </a>
+        </li>
       </ul>
       <ul class="nav pull-right">
         <li>
@@ -90,6 +95,38 @@
 </div>
 
 <script>
+  var produtos = [];
+  var valor_total = function(p_id, p_count) {
+    var total = 0;
+    for (var i=0; i<produtos.length; i++) {
+      var produto = produtos[i];
+      if (produto.id == p_id) {
+        produto.quantidade = p_count;
+      }
+      total += (produto.preco * produto.quantidade);
+    }
+    $("#total-compra").html("&nbsp;&nbsp;Total: R$"+total.toFixed(2));
+    return total;
+  };
+
+  <% @produtos_cols.each do |prods| %>
+    <% prods.each do |produto|%>
+      <% if not produto.nil? %>
+        produtos.push({id: <%=produto.id%>, preco: <%=produto.preco%>, quantidade: 0});
+        $("#prodcount-<%=produto.id%>").keyup(function(){
+          var count = parseInt($(this).val());
+          if (isNaN(count)) {
+            $(this).val("");
+            count = 0;
+          } else {
+            $(this).val(count);
+          }
+          var total = valor_total(<%=produto.id%>, count);
+
+        });
+      <% end %>
+    <% end %>
+  <% end %>
   var incProd = function (e, prod_id) {
     e.preventDefault();
     var divname = "#prodcount-"+prod_id;
@@ -100,6 +137,7 @@
       $(divname).css('background-color', 'white');
       $(divname).css('color', 'black');
     };
+    var total = valor_total(prod_id, count);
   };
 
   var decProd = function (e, prod_id) {
@@ -112,7 +150,11 @@
       $(divname).css('background-color', 'red');
       $(divname).css('color', 'white');
     };
-    
+    var total = valor_total(prod_id, count);
+  };
+
+  var updateCart = function (e, count, price) {
+
   };
 jQuery(document).ready(function($){
   var updateBalance = function(val) {
@@ -145,5 +187,6 @@ jQuery(document).ready(function($){
              alert("Ocorreu um erro durante a tentativa de recarga. Por favor, tente novamente"); 
            });
   });
+  
 });
 </script>
