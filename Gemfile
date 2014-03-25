@@ -11,6 +11,7 @@ end
 
 group :development, :test do
   gem "sqlite3"
+  gem 'debugger'
 end
 
 gem 'json'
@@ -40,4 +41,3 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'ruby-debug'
-gem 'debugger'
