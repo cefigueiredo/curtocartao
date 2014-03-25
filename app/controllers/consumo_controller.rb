@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class ConsumoController < ApplicationController
+protect_from_forgery :except => :confirma_api
 
 	layout "mobile"
 
@@ -67,7 +68,38 @@ class ConsumoController < ApplicationController
     flash[:notice] = @cliente.nome+", seu saldo agora é: "+
       ActionController::Base.helpers.number_to_currency(
         @cliente.saldo, :separator => ',', :precision => 2, :unit => 'R$')
-    redirect_to consumo_path and return 
+    redirect_to consumo_path and return
+	end
+
+	def confirma_api
+		cliente = Cliente.find(params[:id])
+		consumo = params[:consumo]
+
+		valor = 0
+
+		consumo.each do |produto|
+			produto_id = produto[0].to_i
+			quantidade = produto[1].to_i
+
+			next if quantidade == 0
+
+			valor += Produto.find(produto_id).preco * quantidade
+			Consumo.create!(:data => Date.today, :cliente_id => cliente.id, :produto_id => produto_id, :quantidade => quantidade)
+		end
+
+		cliente.saldo -= valor
+		cliente.save!
+
+		@cliente = cliente
+		@valor = valor
+
+        respond_to do |format|
+          format.json {
+            render :json => {
+                :saldo => @cliente.saldo
+              }
+          }
+        end
 	end
 
 end

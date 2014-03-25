@@ -29,6 +29,7 @@ Curtocartao::Application.routes.draw do
 
   match 'consumo/:id/detalhes' => 'consumo#detalhes', :as => :detalhes_consumo
   match 'consumo/:id/confirma' => 'consumo#confirma', :as => :confirma_consumo
+  match 'consumo/:id/confirma_api' => 'consumo#confirma_api', :as => :confirma_consumo
   match 'consumo/' => 'consumo#index', :as => :consumo
   match 'consumo/novo_cliente' => 'consumo#novo_cliente', :as => :novo_cliente_consumo
 

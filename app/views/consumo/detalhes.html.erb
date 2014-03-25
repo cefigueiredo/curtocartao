@@ -47,10 +47,10 @@
           <tr>
               <td> <%= produto.nome%>  <%= number_to_currency(produto.preco, :separator => ',', :precision => 2, :unit => 'R$') %>
               </td>
-              <td> 
+              <td>
                 <div class="input-prepend input-append">
                   <span class="add-on clickable"  style="cursor:pointer;" onClick="javascript:decProd(event, '<%= produto.id %>');"> - </span>
-                  <input class="span4" type="tel" 
+                  <input class="span4" type="tel"
                     id="prodcount-<%=produto.id%>" name="consumo[<%=produto.id%>]" value="0"
                     style="-webkit-appearance: none; margin: 0;">
                   <span class="add-on clickable"  style="cursor:pointer;" onClick="javascript:incProd(event, '<%= produto.id %>');">+</span>
@@ -81,8 +81,8 @@
     <p> Valor da recarga
                 <div class="input-prepend input-append">
                   <span class="add-on">$</span>
-                  <input class="span4 valrec" id="appendedPrependedInput" 
-                    type="tel" placeholder="00" 
+                  <input class="span4 valrec" id="appendedPrependedInput"
+                    type="tel" placeholder="00"
                     name="valor_recarga" autofocus>
                   <span class="add-on">.00</span>
                 </div>
@@ -172,8 +172,8 @@ jQuery(document).ready(function($){
     $("#saldo-alert").show();
     rechargeRequested = true;
     e.preventDefault();
-    $.post('<%= url_for( :controller => 'contrib', :action=> 'confirma_recarga' ) %>', 
-           { "valor_recarga": $(".valrec").val() }, 
+    $.post('<%= url_for( :controller => 'contrib', :action=> 'confirma_recarga' ) %>',
+           { "valor_recarga": $(".valrec").val() },
            function(data){
              updateBalance(data.saldo);
              rechargeRequested = false;
@@ -184,9 +184,9 @@ jQuery(document).ready(function($){
              console.log('Erro na recarga:', x, y, z)
              $("#saldo-alert").hide();
              rechargeRequested = false;
-             alert("Ocorreu um erro durante a tentativa de recarga. Por favor, tente novamente"); 
+             alert("Ocorreu um erro durante a tentativa de recarga. Por favor, tente novamente");
            });
   });
-  
+
 });
 </script>
