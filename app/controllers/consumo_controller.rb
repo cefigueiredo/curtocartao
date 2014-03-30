@@ -12,7 +12,7 @@ protect_from_forgery :except => :confirma_api
 	def detalhes
     @produtos_cols = [[], []]
 		@cliente = Cliente.find(params[:id])
-		@produtos = Produto.order('ordem').find_all{ |p| not p.nome.include? "Recarga" }
+		@produtos = Produto.order('ordem').find_all{ |p| not (p.nome.include? "Recarga" or p.nome.include? "MOBILE") }
     @produtos.in_groups_of(2, false).each do |prods|
       @produtos_cols[0] << prods[0]
       @produtos_cols[1] << prods[1]
