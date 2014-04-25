@@ -5,3 +5,7 @@
  *= require_self
  *= require_tree . 
 */
+
+#total-compra{
+  margin-left: .5em;
+}
