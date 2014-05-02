@@ -31,9 +31,9 @@ ActiveRecord::Schema.define(:version => 20140515014727) do
   create_table "clientes", :force => true do |t|
     t.string   "nome"
     t.string   "email"
-    t.float    "saldo"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.float    "saldo",      :default => 0.0
+    t.datetime "created_at",                  :null => false
+    t.datetime "updated_at",                  :null => false
   end
 
   create_table "consumos", :force => true do |t|
