@@ -16,7 +16,7 @@ class ContribController < ApplicationController
 		@cliente = Cliente.find(params[:id])
     prodcount = params[:prodcount]
     contribval = params[:contribval]
-    
+
     total = 0
     @contribuicao = @cliente.contribuicaos.create()
     contribval.each do |cont|
@@ -56,8 +56,5 @@ class ContribController < ApplicationController
     else
       redirect_to detalhes_consumo_path(@cliente) and return
     end
-  end
-  def mes
-    render :text => "CAGUEI"
   end
 end
