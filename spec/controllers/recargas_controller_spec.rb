@@ -3,9 +3,9 @@ require 'spec_helper'
 describe RecargasController do
   let!(:cliente) { create(:cliente) }
 
-  describe "PUT /recarregar_cinco_reais" do
+  describe "PUT /cinco_reais" do
     def do_action(id=cliente.id)
-      xhr :put, :recarregar_cinco_reais, cliente_id: id
+      xhr :put, :cinco_reais, cliente_id: id
     end
 
     context "valid cliente id" do

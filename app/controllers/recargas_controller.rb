@@ -1,6 +1,6 @@
 class RecargasController < ApplicationController
 
-  def recarregar_cinco_reais
+  def cinco_reais
     @cliente = Cliente.find(params[:cliente_id])
     @cliente.recarregar_cinco_reais
 
