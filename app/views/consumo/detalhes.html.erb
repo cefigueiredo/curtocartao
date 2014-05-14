@@ -39,20 +39,6 @@
   </a>
 </div>
 
-<div id="five_reais" class="modal hide fade" data-url="<%= cinco_reais_cliente_recargas_path(@cliente) %>">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Confirmação de recarga</h3>
-  </div>
-  <div class="modal-body">
-    <p>Você confirma a recarga de R$ 5,00?</p>
-  </div>
-  <div class="modal-footer">
-    <a href="#" class="btn" data-dismiss="modal">Cancelar</a>
-    <button class="btn btn-success" id="recharge_submit">Efetuar Recarga</button>
-  </div>
-</div>
-
 <%= form_tag(confirma_consumo_path(@cliente), :id => 'Confirmar', :name => 'Confirmar') do %>
 <div class="row-fluid" style="padding-top: 60px;">
         <% @produtos_cols.each do |prods| %>
@@ -99,6 +85,7 @@
 </div>
 
 <%= render partial: "recargas/modal_other_values" %>
+<%= render partial: "recargas/modal_cinco_reais" %>
 
 <script>
   var produtos = [];
