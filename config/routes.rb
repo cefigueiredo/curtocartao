@@ -30,7 +30,7 @@ Curtocartao::Application.routes.draw do
   resources :clientes do
     resources :recargas, only: [] do
       collection do
-        put :cinco_reais
+        post :cinco_reais
       end
     end
   end
