@@ -27,7 +27,13 @@ Curtocartao::Application.routes.draw do
 
   resources :produtos
 
-  resources :clientes
+  resources :clientes do
+    resources :recargas, only: [] do
+      collection do
+        put :cinco_reais
+      end
+    end
+  end
 
   match 'consumo/:id/detalhes' => 'consumo#detalhes', :as => :detalhes_consumo
   match 'consumo/:id/confirma' => 'consumo#confirma', :as => :confirma_consumo
