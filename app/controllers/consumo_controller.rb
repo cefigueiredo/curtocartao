@@ -66,8 +66,7 @@ protect_from_forgery :except => :confirma_api
 		@valor = valor
 
     flash[:notice] = @cliente.nome+", seu saldo agora é: "+
-      ActionController::Base.helpers.number_to_currency(
-        @cliente.saldo, :separator => ',', :precision => 2, :unit => 'R$')
+      ActionController::Base.helpers.number_to_currency(@cliente.saldo)
     redirect_to consumo_path and return
 	end
 

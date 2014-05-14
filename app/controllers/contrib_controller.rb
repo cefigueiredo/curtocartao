@@ -50,8 +50,7 @@ class ContribController < ApplicationController
 		@cliente.save!
     if request.xhr?
       render :json => {
-        :saldo => ActionController::Base.helpers.number_to_currency(
-          @cliente.saldo, :separator => ',', :precision => 2, :unit => 'R$')
+        :saldo => ActionController::Base.helpers.number_to_currency(@cliente.saldo)
         }.to_json
     else
       redirect_to detalhes_consumo_path(@cliente) and return

@@ -2,7 +2,7 @@
 <div class="navbar">
   <div class="navbar-inner">
     <a class="brand" href="#">
-      <%= @cliente.nome %>, seu saldo é de <%= number_to_currency(@cliente.saldo, :separator => ',', :precision => 2, :unit => 'R$') %>.
+      <%= @cliente.nome %>, seu saldo é de <%= number_to_currency(@cliente.saldo) %>.
     </a>
     <ul class="nav pull-right">
       <li>

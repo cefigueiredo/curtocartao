@@ -4,7 +4,7 @@
 
 <div data-role="content">
 	<h3>Consumo confirmado!</h3>
-	<p><%= @cliente.nome %> seu novo saldo é <%= number_to_currency(@cliente.saldo, :separator => ',', :precision => 2, :unit => 'R$') %></p>
+	<p><%= @cliente.nome %> seu novo saldo é <%= number_to_currency(@cliente.saldo) %></p>
 
 	<%= link_to 'Novo consumo', consumo_path, 'data-role' => 'button'%>
 </div>
