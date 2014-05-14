@@ -11,7 +11,12 @@ end
 
 group :development, :test do
   gem "sqlite3"
-  gem 'debugger'
+  gem 'rspec',                '~> 3.0.0.beta'
+  gem 'rspec-rails',          '~> 3.0.0.beta'
+  gem 'factory_girl_rails',   '4.4.1'
+  gem 'pry-rails',            '0.3.2'
+  gem 'dotenv-rails',         '0.10.0'
+  gem 'awesome_print',        '1.2.0'
 end
 
 gem 'json'
