@@ -1,4 +1,6 @@
 Curtocartao::Application.routes.draw do
+  root :to => redirect('/consumo/')
+
   get "email/personalizado"
 
   get "email/geral"
