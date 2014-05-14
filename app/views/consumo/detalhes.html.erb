@@ -4,7 +4,7 @@
   <div class="navbar-inner">
     <div class="container">
       <a class="brand" href="#">
-        <%= @cliente.nome %>, seu saldo é de <font id="saldo-f"><%= number_to_currency(@cliente.saldo, :separator => ',', :precision => 2, :unit => 'R$') %></font>.
+        <%= @cliente.nome %>, seu saldo é de <font id="saldo-f"><%= number_to_currency(@cliente.saldo) %></font>.
       </a>
       <ul class="nav pull-left">
         <li>
@@ -45,7 +45,7 @@
           <% prods.each do |produto|%>
         <% if not produto.nil? %>
           <tr>
-              <td> <%= produto.nome%>  <%= number_to_currency(produto.preco, :separator => ',', :precision => 2, :unit => 'R$') %>
+              <td> <%= produto.nome%>  <%= number_to_currency(produto.preco) %>
               </td>
               <td>
                 <div class="input-prepend input-append">
