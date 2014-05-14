@@ -42,8 +42,8 @@
 
 <%= form_tag(confirma_consumo_path(@cliente), :id => 'Confirmar', :name => 'Confirmar') do %>
 <div class="row-fluid" style="padding-top: 60px;">
-        <% @produtos_cols.each do |prods| %>
-<div class="span6">
+  <% @produtos_cols.each do |prods| %>
+    <div class="span6">
       <table class="table">
         <thead>
           <tr>
@@ -53,28 +53,26 @@
         </thead>
         <tbody>
           <% prods.each do |produto|%>
-        <% if not produto.nil? %>
-          <tr>
+            <% if not produto.nil? %>
+            <tr>
               <td> <%= produto.nome%>  <%= number_to_currency(produto.preco) %>
               </td>
               <td>
                 <div class="input-prepend input-append">
                   <span class="add-on clickable"  style="cursor:pointer;" onClick="javascript:decProd(event, '<%= produto.id %>');"> - </span>
                   <input class="span4" type="tel"
-                    id="prodcount-<%=produto.id%>" name="consumo[<%=produto.id%>]" value="0"
-                    style="-webkit-appearance: none; margin: 0;">
+                  id="prodcount-<%=produto.id%>" name="consumo[<%=produto.id%>]" value="0"
+                  style="-webkit-appearance: none; margin: 0;">
                   <span class="add-on clickable"  style="cursor:pointer;" onClick="javascript:incProd(event, '<%= produto.id %>');">+</span>
                 </div>
-  </td>
+              </td>
             </tr>
-    <% end %>
             <% end %>
+          <% end %>
         </tbody>
       </table>
-      </div>
-          <% end %>
-
-
+    </div>
+  <% end %>
 </div>
 <% end %>
 
@@ -89,68 +87,69 @@
 <%= render partial: "recargas/modal_cinco_reais" %>
 
 <script>
-  var produtos = [];
-  var valor_total = function(p_id, p_count) {
-    var total = 0;
-    for (var i=0; i<produtos.length; i++) {
-      var produto = produtos[i];
-      if (produto.id == p_id) {
-        produto.quantidade = p_count;
-      }
-      total += (produto.preco * produto.quantidade);
+var produtos = [];
+var valor_total = function(p_id, p_count) {
+  var total = 0;
+  for (var i=0; i<produtos.length; i++) {
+    var produto = produtos[i];
+    if (produto.id == p_id) {
+      produto.quantidade = p_count;
     }
-    $("#total-compra").html("&nbsp;&nbsp;Total: R$"+total.toFixed(2));
-    return total;
-  };
+    total += (produto.preco * produto.quantidade);
+  }
+  $("#total-compra").html("&nbsp;&nbsp;Total: R$"+total.toFixed(2));
+  return total;
+};
 
-  <% @produtos_cols.each do |prods| %>
-    <% prods.each do |produto|%>
-      <% if not produto.nil? %>
-        produtos.push({id: <%=produto.id%>, preco: <%=produto.preco%>, quantidade: 0});
-        $("#prodcount-<%=produto.id%>").keyup(function(){
-          var count = parseInt($(this).val());
-          if (isNaN(count)) {
-            $(this).val("");
-            count = 0;
-          } else {
-            $(this).val(count);
-          }
-          var total = valor_total(<%=produto.id%>, count);
+<% @produtos_cols.each do |prods| %>
+  <% prods.each do |produto|%>
+    <% if not produto.nil? %>
+      produtos.push({id: <%=produto.id%>, preco: <%=produto.preco%>, quantidade: 0});
+      $("#prodcount-<%=produto.id%>").keyup(function(){
+        var count = parseInt($(this).val());
+        if (isNaN(count)) {
+          $(this).val("");
+          count = 0;
+        } else {
+          $(this).val(count);
+        }
+        var total = valor_total(<%=produto.id%>, count);
 
-        });
-      <% end %>
+      });
     <% end %>
   <% end %>
-  var incProd = function (e, prod_id) {
-    e.preventDefault();
-    var divname = "#prodcount-"+prod_id;
-    var count = isNaN(parseInt($(divname).val())) ? 0 : parseInt($(divname).val())
-    count += 1;
-    $(divname).val(count);
-    if (count > -1) {
-      $(divname).css('background-color', 'white');
-      $(divname).css('color', 'black');
-    };
-    var total = valor_total(prod_id, count);
-  };
+<% end %>
 
-  var decProd = function (e, prod_id) {
-    e.preventDefault();
-    var divname = "#prodcount-"+prod_id;
-    var count = isNaN(parseInt($(divname).val())) ? 0 : parseInt($(divname).val())
-    count -= 1;
-    $(divname).val(count);
-    if (count < 0) {
-      $(divname).css('background-color', 'red');
-      $(divname).css('color', 'white');
-    };
-    var total = valor_total(prod_id, count);
+var incProd = function (e, prod_id) {
+  e.preventDefault();
+  var divname = "#prodcount-"+prod_id;
+  var count = isNaN(parseInt($(divname).val())) ? 0 : parseInt($(divname).val())
+  count += 1;
+  $(divname).val(count);
+  if (count > -1) {
+    $(divname).css('background-color', 'white');
+    $(divname).css('color', 'black');
   };
+  var total = valor_total(prod_id, count);
+};
 
-  var updateCart = function (e, count, price) {
-
+var decProd = function (e, prod_id) {
+  e.preventDefault();
+  var divname = "#prodcount-"+prod_id;
+  var count = isNaN(parseInt($(divname).val())) ? 0 : parseInt($(divname).val())
+  count -= 1;
+  $(divname).val(count);
+  if (count < 0) {
+    $(divname).css('background-color', 'red');
+    $(divname).css('color', 'white');
   };
-jQuery(document).ready(function($){
+  var total = valor_total(prod_id, count);
+};
+
+var updateCart = function (e, count, price) {
+
+};
+$(document).ready(function($){
   var updateBalance = function(val) {
     $("#saldo-f").html(val);
   };
@@ -173,27 +172,28 @@ jQuery(document).ready(function($){
   });
   var rechargeRequested = false;
   $("#submit-recarga").click(function(e){
-    if (rechargeRequested) {
-      return;
-    }
+    e.preventDefault();
+    
+    if (rechargeRequested) { return; }
+
     $("#saldo-alert").show();
     rechargeRequested = true;
-    e.preventDefault();
-    $.post('<%= url_for( :controller => 'contrib', :action=> 'confirma_recarga' ) %>',
-           { "valor_recarga": $(".valrec").val() },
-           function(data){
-             updateBalance(data.saldo);
-             rechargeRequested = false;
-             $("#saldo-alert").hide();
-             $("#modalRecarga").modal("hide");
-             $(".valrec").val('')
-           }).error(function(x, y, z) {
-             console.log('Erro na recarga:', x, y, z)
-             $("#saldo-alert").hide();
-             rechargeRequested = false;
-             alert("Ocorreu um erro durante a tentativa de recarga. Por favor, tente novamente");
-           });
-  });
 
+
+    $.post('<%= url_for( :controller => 'contrib', :action=> 'confirma_recarga' ) %>',
+          { "valor_recarga": $(".valrec").val() },
+      function(data){
+        updateBalance(data.saldo);
+        rechargeRequested = false;
+        $("#modalRecarga").modal("hide");
+        $("#saldo-alert").hide();
+        $(".valrec").val('')
+      }).error(function(x, y, z) {
+        console.log('Erro na recarga:', x, y, z)
+        $("#saldo-alert").hide();
+        rechargeRequested = false;
+        alert("Ocorreu um erro durante a tentativa de recarga. Por favor, tente novamente");
+      });
+  });
 });
 </script>
