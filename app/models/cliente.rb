@@ -5,9 +5,17 @@ class Cliente < ActiveRecord::Base
 
 
   def recarregar_cinco_reais
-    valor = 5.0
-    self.recargas.create(valor: valor)
-    self.saldo += valor
-    self.save!
+    recarregar(5.0)
   end
+
+  def recarregar_dez_reais
+    recarregar(10.0)
+  end
+
+  private
+    def recarregar(valor)
+      self.recargas.create(valor: valor)
+      self.saldo += valor
+      self.save!
+    end
 end

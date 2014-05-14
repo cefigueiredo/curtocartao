@@ -19,4 +19,21 @@ describe Cliente do
       expect(cliente.recargas.last.valor).to eq(5.0)
     end
   end
+
+  describe "#recarregar_dez_reais" do
+    it do
+      expect do
+        cliente.recarregar_dez_reais
+      end.to change{ cliente.saldo }.from(0.0).to(10.0)
+    end
+    it do
+      expect do
+        cliente.recarregar_dez_reais
+      end.to change{ cliente.recargas.count }.from(0).to(1)
+    end
+    it do
+      cliente.recarregar_dez_reais
+      expect(cliente.recargas.last.valor).to eq(10.0)
+    end
+  end
 end
