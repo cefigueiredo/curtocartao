@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'rails', '~>3.2'
+gem 'activeadmin', github: 'gregbell/active_admin'
 
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
