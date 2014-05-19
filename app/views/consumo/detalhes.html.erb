@@ -20,22 +20,7 @@
           </a>
         </li>
       </ul>
-      <ul class="nav pull-right">
-        <li>
-          <button type="button" class="btn btn-default btn-lg" id="five_reais_recharge"
-          data-client-id="<%= @cliente.id %>" data-toggle="modal" data-target="#five_reais">
-            Recarga de <br/>
-            <strong>R$ 5,00</strong>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="btn btn-default btn-lg" id="recarga-btn"
-          data-toggle="modal" data-target="#modalRecarga" >
-            Recarga de <br/>
-            <strong>outro valor</strong>
-          </button>
-        </li>
-      </ul>
+      <%= render partial: 'consumo/botoes_de_recarga' %>
     </div>
   </div>
 </div>
@@ -173,7 +158,7 @@ $(document).ready(function($){
   var rechargeRequested = false;
   $("#submit-recarga").click(function(e){
     e.preventDefault();
-    
+
     if (rechargeRequested) { return; }
 
     $("#saldo-alert").show();
