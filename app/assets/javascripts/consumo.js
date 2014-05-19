@@ -2,7 +2,7 @@
 
 $(document).ready(function($){
 
-  $("#recharge_submit").click(function(){
+  $(".recharge_submit").click(function(){
     var current_modal = $(this).parents(".modal");
     var url = current_modal.data("url");
 
