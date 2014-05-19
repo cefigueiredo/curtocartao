@@ -16,6 +16,10 @@ class Cliente < ActiveRecord::Base
     recarregar(20.0)
   end
 
+  def recarregar_cinquenta_reais
+    recarregar(50.0)
+  end
+
   private
     def recarregar(valor)
       self.recargas.create(valor: valor)
