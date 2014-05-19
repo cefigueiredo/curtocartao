@@ -16,7 +16,7 @@
         </li>
         <li>
           <a class="brand" href="#" id="total-compra">
-            &nbsp;&nbsp;Total: R$0,00
+            Total: R$0,00
           </a>
         </li>
       </ul>
@@ -68,8 +68,10 @@
   <img id="qrcode"/>
 </div>
 
+<%= render partial: "recargas/modal_recarga", locals: { url: dez_reais_cliente_recargas_path(@cliente), value: 10.0 } %>
+<%= render partial: "recargas/modal_recarga", locals: { url: vinte_reais_cliente_recargas_path(@cliente), value: 20.0 } %>
+<%= render partial: "recargas/modal_recarga", locals: { url: cinquenta_reais_cliente_recargas_path(@cliente), value: 50.0 } %>
 <%= render partial: "recargas/modal_other_values" %>
-<%= render partial: "recargas/modal_cinco_reais" %>
 
 <script>
 var produtos = [];

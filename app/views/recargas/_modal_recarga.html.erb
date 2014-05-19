@@ -1,0 +1,13 @@
+<%= content_tag(:div, id: "recarrega_#{value.to_i}_reais", class: "modal hide fade", :'data-url' => "#{url}") do %>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Confirmação de recarga</h3>
+  </div>
+  <div class="modal-body">
+    <p>Você confirma a recarga de <%= number_to_currency(value) %>?</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn" data-dismiss="modal">Cancelar</a>
+    <button class="btn btn-success" id="recharge_submit">Efetuar Recarga</button>
+  </div>
+<%- end -%>
