@@ -32,6 +32,7 @@ Curtocartao::Application.routes.draw do
       collection do
         post :cinco_reais
         post :dez_reais
+        post :vinte_reais
       end
     end
   end
