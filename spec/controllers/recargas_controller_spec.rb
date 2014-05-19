@@ -26,4 +26,28 @@ describe RecargasController do
       end
     end
   end
+
+  describe "POST /dez_reais" do
+    def do_action(id=cliente.id)
+      xhr :post, :dez_reais, cliente_id: id
+    end
+
+    context "valid cliente id" do
+      before(:each) do
+        do_action
+      end
+
+      it { expect(response.status).to eq(200) }
+      it { expect(json['saldo']).to eq "R$ 10,00" }
+    end
+
+    context "invalid cliente id" do
+
+      it "responds with 404 not found" do
+        expect do
+          do_action("invalid")
+        end.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
 end

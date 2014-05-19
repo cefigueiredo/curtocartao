@@ -31,6 +31,7 @@ Curtocartao::Application.routes.draw do
     resources :recargas, only: [] do
       collection do
         post :cinco_reais
+        post :dez_reais
       end
     end
   end
