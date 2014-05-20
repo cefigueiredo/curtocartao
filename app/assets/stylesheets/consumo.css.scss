@@ -15,6 +15,14 @@
     padding: 1em;
 }
 
+.navbar.navbar-fixed-top .navbar-inner > .btn{
+    padding: 12px 20px;
+}
+
+.navbar.navbar-fixed-top .navbar-inner > .btn-primary{
+    color: #fff;
+}
+
 .navbar.navbar-fixed-top .navbar-inner > span{
     color: #777777;
     font-size: 20px;
