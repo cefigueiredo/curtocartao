@@ -1,28 +1,13 @@
 <div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="brand" href="#">
-        <%= @cliente.nome %>, seu saldo é de <font id="saldo-f"><%= number_to_currency(@cliente.saldo) %></font>.
-      </a>
-      <ul class="nav pull-left">
-        <li>
-          <%= link_to 'Cancelar', consumo_path, 'data-icon' => 'arrow-l', 'role' => 'button', 'class' => 'btn'%>
-        </li>
-        <li>
-          &nbsp;
-        </li>
-        <li>
-          <a role="button" class="btn btn-primary" id="btn-send" onClick="javascript: document.Confirmar.submit();"><font color="white"> Enviar </font> </a>
-        </li>
-        <li>
-          <a class="brand" href="#" id="total-compra">
-            Total: R$0,00
-          </a>
-        </li>
-      </ul>
-      <%= render partial: 'consumo/botoes_de_recarga' %>
+    <div class="navbar-inner">
+        <span>
+            <span><%= @cliente.nome %></span>, seu saldo é de <span id="saldo-f"><%= number_to_currency(@cliente.saldo) %></span>.
+        </span>
+        <%= link_to 'Cancelar', consumo_path, 'data-icon' => 'arrow-l', 'role' => 'button', 'class' => 'btn'%>
+        <button class="btn btn-primary" onclick="document.Confirmar.submit();">Enviar</button>
+        <span id="total-compra">Total: R$0,00</span>
+        <%= render partial: 'consumo/botoes_de_recarga' %>
     </div>
-  </div>
 </div>
 
 <%= form_tag(confirma_consumo_path(@cliente), :id => 'Confirmar', :name => 'Confirmar') do %>
