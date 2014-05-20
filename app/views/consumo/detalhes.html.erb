@@ -1,6 +1,6 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-      <span class="brand">
+      <span>
         <%= @cliente.nome %>, seu saldo é de <span id="saldo-f"><%= number_to_currency(@cliente.saldo) %></span>.
       </span>
       <ul class="nav pull-left">
@@ -14,7 +14,7 @@
           <a role="button" class="btn btn-primary" id="btn-send" onClick="javascript: document.Confirmar.submit();"><font color="white"> Enviar </font> </a>
         </li>
         <li>
-          <span class="brand" id="total-compra">Total: R$0,00</span>
+          <span id="total-compra">Total: R$0,00</span>
         </li>
       </ul>
       <%= render partial: 'consumo/botoes_de_recarga' %>
