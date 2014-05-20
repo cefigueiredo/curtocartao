@@ -1,6 +1,5 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
-    <div class="container">
       <span class="brand">
         <%= @cliente.nome %>, seu saldo é de <span id="saldo-f"><%= number_to_currency(@cliente.saldo) %></span>.
       </span>
@@ -19,7 +18,6 @@
         </li>
       </ul>
       <%= render partial: 'consumo/botoes_de_recarga' %>
-    </div>
   </div>
 </div>
 
