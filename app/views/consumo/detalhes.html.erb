@@ -1,9 +1,9 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">
-        <%= @cliente.nome %>, seu saldo é de <font id="saldo-f"><%= number_to_currency(@cliente.saldo) %></font>.
-      </a>
+      <span class="brand">
+        <%= @cliente.nome %>, seu saldo é de <span id="saldo-f"><%= number_to_currency(@cliente.saldo) %></span>.
+      </span>
       <ul class="nav pull-left">
         <li>
           <%= link_to 'Cancelar', consumo_path, 'data-icon' => 'arrow-l', 'role' => 'button', 'class' => 'btn'%>
@@ -15,9 +15,7 @@
           <a role="button" class="btn btn-primary" id="btn-send" onClick="javascript: document.Confirmar.submit();"><font color="white"> Enviar </font> </a>
         </li>
         <li>
-          <a class="brand" href="#" id="total-compra">
-            Total: R$0,00
-          </a>
+          <span class="brand" id="total-compra">Total: R$0,00</span>
         </li>
       </ul>
       <%= render partial: 'consumo/botoes_de_recarga' %>
