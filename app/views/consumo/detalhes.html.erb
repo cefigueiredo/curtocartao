@@ -3,20 +3,9 @@
       <span>
         <%= @cliente.nome %>, seu saldo é de <span id="saldo-f"><%= number_to_currency(@cliente.saldo) %></span>.
       </span>
-      <ul class="nav pull-left">
-        <li>
           <%= link_to 'Cancelar', consumo_path, 'data-icon' => 'arrow-l', 'role' => 'button', 'class' => 'btn'%>
-        </li>
-        <li>
-          &nbsp;
-        </li>
-        <li>
           <a role="button" class="btn btn-primary" id="btn-send" onClick="javascript: document.Confirmar.submit();"><font color="white"> Enviar </font> </a>
-        </li>
-        <li>
           <span id="total-compra">Total: R$0,00</span>
-        </li>
-      </ul>
       <%= render partial: 'consumo/botoes_de_recarga' %>
   </div>
 </div>
