@@ -11,4 +11,11 @@ ActiveAdmin.register Cliente do
     actions
   end
 
+  form do |f|
+    f.inputs do
+      f.input :nome
+      f.input :email
+    end
+    f.actions
+  end
 end
