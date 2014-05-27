@@ -4,13 +4,22 @@ pt-BR:
       cliente:
         one: Cliente
         other: Clientes
+      produto:
+        one: Produto
+        other: Produtos
     attributes:
-        cliente:
-          nome: Nome
-          email: Email
-          saldo: Saldo
-          created_at: Criado em
-          updated_at: Atualizado em
+      cliente:
+        nome: Nome
+        email: Email
+        saldo: Saldo
+        created_at: Criado em
+        updated_at: Atualizado em
+      produto:
+        nome: Nome
+        preco: Preço
+        ordem: Ordem
+        created_at: Criado em
+        updated_at: Atualizado em
   activerecord:
     <<: *models_and_attributes
   activemodel:
