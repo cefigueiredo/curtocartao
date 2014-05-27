@@ -1,10 +1,13 @@
 ActiveAdmin.register Cliente do
-  config.filters = false
+
+  filter :nome
+  filter :email
 
   index do
     column :nome
     column :email
     column :saldo
+    column :created_at
     actions
   end
 
