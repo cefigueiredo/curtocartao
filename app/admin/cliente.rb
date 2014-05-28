@@ -15,6 +15,7 @@ ActiveAdmin.register Cliente do
     f.inputs do
       f.input :nome
       f.input :email
+      f.input :saldo
     end
     f.actions
   end
